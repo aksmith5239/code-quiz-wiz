@@ -1,0 +1,63 @@
+/* color palette */
+:root {
+--primary-color: #361d74;
+--secondary-color:#DE4D86;
+--tertiary-color:#E3D7FF; 
+--dark:#211103;
+--light: #fffffc;
+--lightgray:#DCDCDC;
+}
+
+* {
+    margin:0;
+    padding:0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body{
+    
+}
+
+h1 {
+    font-size: 25px;
+    color: var(--dark);
+}
+h2 {
+    font-size: 20px;
+    color: var(--dark);
+}
+
+h3 {
+   font-size: 14px; 
+}
+
+.btn {
+    background-color: var(--primary-color);
+    color: var(--light);
+    border-radius: 5px;
+}
+
+.btn:hover{
+    background-color: var(--secondary-color);
+    color: var(--dark);
+}
+
+input:focus {
+    background-color: var(--tertiary-color);
+
+}
+
+.small-page-link a{
+    color: var(--secondary-color);
+    text-decoration:none;
+
+}
+
+.result {
+    color: var(--lightgray);
+    border-top: 1px solid var(--lightgray);
+    font-style: italic;
+    font-size: 15px;
+    
+}
+
