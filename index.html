@@ -9,19 +9,28 @@
 <body>
     <header>
         <div class="score" id="score">
-            <h3><a href="#">View High Score</a></h3>
+            <h3><a href="#highscore">View High Score</a></h3>
         </div>
         <div class="timer" id="timer">
             <h3>Time: 00:00</h3>
         </div>
     </header>
     <main>
-        <section class="content-wrapper" id="content">
-            <div class="questions" id="questions">
+        <section class="content-wrapper" id="welcome-page">
+            <div class="questions" id="welcome">
                 <h1>Welcome to the Quiz Wiz Challenge!</h1>
                 <ul>
-                    <!-- <li><button class="btn" id="start">Start</button></li>
-                    <li><button class="btn">Button 1</button><span>answer</span></li>
+                    <li><button class="btn" id="start">Start</button></li>
+                    
+                </ul>
+            </div>
+        </section>
+        <section class="content-wrapper" id="quiz-content" style="display:none;">
+            <div class="questions" id="questions">
+                <h1>Questions</h1>
+                <ul>
+                    
+                    <!-- <li><button class="btn">Button 1</button><span>answer</span></li>
                     <li><button class="btn">Button 2</button><span>answer</span></li>
                     <li><button class="btn">Button 3</button><span>answer</span></li>
                     <li><button class="btn">Button 4</button><span>answer</span></li> -->
@@ -32,7 +41,16 @@
             </div>
 
         </section>
-        
+        <section class="content-wrapper" id="highscore" style="display:none;">
+            <div class="questions" id="">
+                <h1>Great Job, You have Completed the Quiz!</h1>
+                <h2>Your high score is: </h2>
+                <ul>
+                    <li>Highscore</li>
+                    
+                </ul>
+            </div>
+        </section>
 
     </main>  
     <script src="./assets/js/script.js"></script>

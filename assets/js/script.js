@@ -1,8 +1,9 @@
 //global variables
 var timerEl = document.querySelector('#timer');
 var score = 0;
-
-
+var contentEl = document.querySelector("#quiz-content");
+var startButton = document.querySelector("#start");
+var highscoreEl = document.querySelector("#score");
 //questions and answers array: // put questions in objects -  this array will present in this order. 
 var questions = [
     {
@@ -57,10 +58,20 @@ var questions = [
     }
 ];  // end of questions array
 
+// here is our main quiz logic
+var quizHandler = function() {
+    // Turn display none on for the welcome-page section and turn off for the content section
 
-for (var i = 0; i < questions.length; i++) {
-    var answer = prompt(questions[i].q);
-}
+    // run for loop for the questions
+    for (var i = 0; i < questions.length; i++) {
+        // temporary window promt to test functionality
+        var answer = prompt(questions[i].q);
+
+        // create HTML elements to loop through the questions
+    }
+};
+
+
 // Need to build out this function so it sets intervals that subtract time when a question is answered incorrectly
 function timer() {
     var timeLeft = 60;
@@ -80,16 +91,11 @@ function timer() {
     }, 1000);
   }
 
-// timer();
-// welcome screen with start button
-// window.alert("Welcome to Quiz-Wiz Challenge!");
-// //click start button and timer starts
 
-
-    // for (var i = 0; i < quizQuestions.length; i++) {
-    //     var quizzy = quizQuestions.question[i];
-    //     console.log(quizzy);
-    // }
+  // here is where our high score logic will go.
+var highScoreHandler = function() {
+ window.alert("You have clicked the highscore link");
+};
 
 
 // window.confirm("Click OK to begin");
@@ -144,3 +150,8 @@ function timer() {
 
 
 // if want people to replay -  random sort of questions array needs to be considered
+ 
+//click start button and timer starts
+startButton.addEventListener("click", quizHandler);
+
+highscoreEl.addEventListener("click", highScoreHandler);
