@@ -6,60 +6,62 @@ var score = 0;
 //questions and answers array: // put questions in objects -  this array will present in this order. 
 var questions = [
     {
-        question: "Commonly used data types DO Not include: ",
-        answers: {
-            a: "1. strings",
-            b: "2. booleans",
-            c: "3. alerts",
-            d: "4. numbers",
+        q: "Commonly used data types DO Not include: ",
+        choices: {
+            choiceA: "1. strings",
+            choiceB: "2. booleans",
+            choiceC: "3. alerts",
+            choiceD: "4. numbers",
         },
-        correctAnswer: "b"
+        a: "choiceB"
     },
     {
-        question: "The condition in an if/else statement is enclosed with: ",
-        answers: {
-            a: "1. quotes",
-            b: "2. curly brackets",
-            c: "3. parenthesis",
-            d: "4. square brackets",
+        q: "The condition in an if/else statement is enclosed with: ",
+        choices: {
+            choiceA: "1. quotes",
+            choiceB: "2. curly brackets",
+            choiceC: "3. parenthesis",
+            choiceD: "4. square brackets",
         },
-        correctAnswer: "c"
+        a: "choiceC"
     },
     {
-        question: "Arrays in JavaScript can be used to store: ",
-        answers: {
-            a: "1. numbers and strings",
-            b: "2. other arrays",
-            c: "3. booleans",
-            d: "4. all of the above",
+        q: "Arrays in JavaScript can be used to store: ",
+        choices: {
+            choiceA: "1. numbers and strings",
+            choiceB:"2. other arrays",
+            choiceC: "3. booleans",
+            choiceD: "4. all of the above",
         },
-        correctAnswer: "d"
+        a: "choiceD"
     },
     {
-        question: "String values must be enclosed within _______ when being assigned to variables: ",
-        answers: {
-            a: "1. commas",
-            b: "2. curly brackets",
-            c: "3. quotes",
-            d: "4. parenthesis",
+        q: "String values must be enclosed within _______ when being assigned to variables: ",
+        choices: {
+            choiceA: "1. commas",
+            choiceB: "2. curly brackets",
+            choiceC: "3. quotes",
+            choiceD: "4. parenthesis",
         },
-        correctAnswer: "b"
+        a: "choiceB"
     },
     {
-        question: "A very useful tool during development and debugging for printing content to the debugger is: ",
-        answers: {
-            a: "1. JavaScript",
-            b: "2. terminal/bash",
-            c: "3. for loops",
-            d: "4. console log",
+        q: "A very useful tool during development and debugging for printing content to the debugger is: ",
+        choices: {
+            choiceA: "1. JavaScript",
+            choiceB: "2. terminal/bash",
+            choiceC: "3. for loops",
+            choiceD: "4. console log",
         },
-        correctAnswer: "d"
+        a: "choiceD"
     }
 ];  // end of questions array
 
-// Timer that counts down from 5
-// Timer that counts down from 5
-// Timer that counts down from 5
+
+for (var i = 0; i < questions.length; i++) {
+    var answer = prompt(questions[i].q);
+}
+// Need to build out this function so it sets intervals that subtract time when a question is answered incorrectly
 function timer() {
     var timeLeft = 60;
   
@@ -78,10 +80,18 @@ function timer() {
     }, 1000);
   }
 
-timer();
+// timer();
 // welcome screen with start button
 // window.alert("Welcome to Quiz-Wiz Challenge!");
 // //click start button and timer starts
+
+
+    // for (var i = 0; i < quizQuestions.length; i++) {
+    //     var quizzy = quizQuestions.question[i];
+    //     console.log(quizzy);
+    // }
+
+
 // window.confirm("Click OK to begin");
 
 // // loop through the questions
