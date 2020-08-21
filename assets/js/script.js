@@ -1,6 +1,7 @@
 //global variables
-var timerEl = document.getElementById('timer');
+var timerEl = document.querySelector('#timer');
 var score = 0;
+
 
 //questions and answers array: // put questions in objects -  this array will present in this order. 
 var questions = [
@@ -56,62 +57,80 @@ var questions = [
     }
 ];  // end of questions array
 
-var timer = function() {
-    // this is where our timer logic goes
+// Timer that counts down from 5
+// Timer that counts down from 5
+// Timer that counts down from 5
+function timer() {
+    var timeLeft = 60;
+  
+    // Use the `setInterval()` method to call a function to be executed every 1000 milliseconds
+    var timeInterval = setInterval(function() {
+      if (timeLeft > 1) {
+        timerEl.textContent = timeLeft + ' seconds remaining';
+        timeLeft--;
+      } else if (timeLeft === 1) {
+        timerEl.textContent = timeLeft + ' second remaining';
+        timeLeft--;
+      } else {
+        timerEl.textContent = '';
+        clearInterval(timeInterval);
+      }
+    }, 1000);
+  }
 
-}
+timer();
 // welcome screen with start button
-window.alert("Welcome to Quiz-Wiz Challenge!");
-//click start button and timer starts
-window.confirm("Click OK to begin");
+// window.alert("Welcome to Quiz-Wiz Challenge!");
+// //click start button and timer starts
+// window.confirm("Click OK to begin");
 
-// loop through the questions
+// // loop through the questions
 
-//timer loses time when player answers incorrectly
+// //timer loses time when player answers incorrectly
 
-// next question comes up when answer correctly
-// question screen with question and 4 answer buttons
-window.confirm("Question 1");
-var question1 = window.confirm("This is your first question");
-if (question1) {
-    window.alert("Correct!");
-} else {
-    window.alert("Wrong Answer!");
-}
+// // next question comes up when answer correctly
+// // question screen with question and 4 answer buttons
+// window.confirm("Question 1");
+// var question1 = window.confirm("This is your first question");
+// if (question1) {
+//     window.alert("Correct!");
+// } else {
+//     window.alert("Wrong Answer!");
+// }
 
-// answer correct or wrong display
-var question2 = window.confirm("This is your second question");
-if (question2) {
-    window.alert("Correct!");
-} else {
-    window.alert("Wrong Answer!");
-}
+// // answer correct or wrong display
+// var question2 = window.confirm("This is your second question");
+// if (question2) {
+//     window.alert("Correct!");
+// } else {
+//     window.alert("Wrong Answer!");
+// }
 
-//okay for right
-// cancel for wrong
+// //okay for right
+// // cancel for wrong
 
-//presented with questions
-// array of questions
-// first question answered - presented with another question
+// //presented with questions
+// // array of questions
+// // first question answered - presented with another question
 
-//when answered incorrectly: 
-//time subtracted from clock
-// buzz sound chimes
-// wrong answer displayed in answer section
+// //when answered incorrectly: 
+// //time subtracted from clock
+// // buzz sound chimes
+// // wrong answer displayed in answer section
 
-//when answered correctly 
-// correct! displayed in answer section
-// ding chime sounds
+// //when answered correctly 
+// // correct! displayed in answer section
+// // ding chime sounds
 
-// when all questions answered - game over
-// when time runs out --game over
-window.alert("Game Over! View Highscore");
-// view highscore 
-window.alert("You have the highscore");
-window.prompt("Add your initials here");
-// highscore page with initials of high score player
-// add initials to high score - store to localStorage
-window.alert("Thank you for playing. Play again soon!");
+// // when all questions answered - game over
+// // when time runs out --game over
+// window.alert("Game Over! View Highscore");
+// // view highscore 
+// window.alert("You have the highscore");
+// window.prompt("Add your initials here");
+// // highscore page with initials of high score player
+// // add initials to high score - store to localStorage
+// window.alert("Thank you for playing. Play again soon!");
 
 
 // if want people to replay -  random sort of questions array needs to be considered
