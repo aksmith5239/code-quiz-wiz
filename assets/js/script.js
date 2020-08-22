@@ -8,121 +8,102 @@ var startButton = document.querySelector("#start");
 var reStartButton = document.querySelector("#re-start");
 var highscoreEl = document.querySelector("#score");
 var timeLeft = 30;
+
 //questions and answers array: // put questions in objects -  this array will present in this order. 
 var questions = [
     {
         q: "Commonly used data types DO Not include: ",
-        choices: {
-            a: "1. strings",
-            b: "2. booleans",
-            c: "3. alerts",
-            d: "4. numbers",
-        },
+        choiceA: "1. strings",
+        choiceB: "2. booleans",
+        choiceC: "3. alerts",
+        choiceD: "4. numbers",
         answer: "b"
     },
     {
         q: "The condition in an if/else statement is enclosed with: ",
-        choices: {
-            a: "1. quotes",
-            b: "2. curly brackets",
-            c: "3. parenthesis",
-            d: "4. square brackets",
-        },
+        choiceA: "1. quotes",
+        choiceB: "2. curly brackets",
+        choiceC: "3. parenthesis",
+        choiceD: "4. square brackets",
         answer: "c"
     },
     {
         q: "Arrays in JavaScript can be used to store: ",
-        choices: {
-            a: "1. numbers and strings",
-            b:"2. other arrays",
-            c: "3. booleans",
-            d: "4. all of the above",
-        },
+        choiceA: "1. numbers and strings",
+        choiceB:"2. other arrays",
+        choiceC: "3. booleans",
+        choiceD: "4. all of the above",
         answer: "d"
     },
     {
         q: "String values must be enclosed within _______ when being assigned to variables: ",
-        choices: {
-            a: "1. commas",
-            b: "2. curly brackets",
-            c: "3. quotes",
-            d: "4. parenthesis",
-        },
+        choiceA: "1. commas",
+        choiceB: "2. curly brackets",
+        choiceC: "3. quotes",
+        choiceD: "4. parenthesis",
         answer: "b"
     },
     {
         q: "A very useful tool during development and debugging for printing content to the debugger is: ",
-        choices: {
-            a: "1. JavaScript",
-            b: "2. terminal/bash",
-            c: "3. for loops",
-            d: "4. console log",
-        },
+        choiceA: "1. JavaScript",
+        choiceB: "2. terminal/bash",
+        choiceC: "3. for loops",
+        choiceD: "4. console log",
         answer: "d"
     }
 ];  // end of questions array
+
+
 //time creator function
 document.getElementById("timer").innerHTML = "<h3>Timer: " + timeLeft + " seconds left</h3>";
-
-    //parent node  =  timer
-    //insert h3 with timer and time left variable
-
-// here is our main quiz logic
-var quizHandler = function() {
-    
-    // document.getElementById("timer").innerHTML = "<h3>Timer: " + timeLeft + " seconds left</h3>";
-    // Turn display none on for the welcome-page section and turn off for the content section
-    
-    // run for loop for the questions
-    for (var i = 0; i < questions.length; i++) {
-        if (timeLeft > 0) {
-            
-        // temporary window promt to test functionality
-        var askQuestion = prompt(questions[i].q);
-        var correctAnswer = (questions[i].answer);
-        console.log(askQuestion);
-        console.log(correctAnswer);
-        // create HTML elements to loop through the questions
-        
-        //right or wrong answers
-    
-            if(askQuestion === correctAnswer) {
-                window.alert("Correct!");
-            } else {
-                window.alert("Wrong Answer");
-                timeLeft = (timeLeft - 10);
-                console.log(timeLeft);
-                document.getElementById("timer").innerHTML = "<h3>Timer: " + timeLeft+ " seconds left</h3>";
-            } // end questions if statement
-        } // end time left if statement
-        else {
-            window.alert("Your time has run out! View your score");
-            return;
-}
- }// end of our for loop
-
-};
+// when first logging on to page, quiz content and highscore are not visible
+document.getElementById("quiz-content").style.display = "none";
+document.getElementById("highscore").style.display = "none";
 
 
-// Need to build out this function so it sets intervals that subtract time when a question is answered incorrectly
-// function timer() {
-//     var timeLeft = 60;
+var showQuiz = function() {
+ //when quiz start button clicked: 
+ document.getElementById("welcome-page").style.display = "none";
+ // turn diplay to none for the welcome section
+ document.getElementById("quiz-content").style.display = "block";
+ 
+ for (var i = 0; i < questions.length; i++) {
+    if (timeLeft > 0) {
+      
+     // set the question html
+var questionDivEl = document.querySelector("#questions");
+var questionEl = document.createElement("h1");
+questionEl.textContent = questions[i].q;
+questionEl.className = "questions";
+questionDivEl.appendChild(questionEl);
+var choiceEl = document.querySelector("#questions");
+
+var choiceItemEl = document.createElement("li");
+choiceItemEl.textContent = questions[i].choiceA;
+choiceItemEl.className = "btn";
+choiceEl.appendChild(choiceItemEl);
+
+var choiceItemEl = document.createElement("li");
+choiceItemEl.textContent = questions[i].choiceB;
+choiceItemEl.className = "btn";
+choiceEl.appendChild(choiceItemEl);
+
+var choiceItemEl = document.createElement("li");
+choiceItemEl.textContent = questions[i].choiceC;
+choiceItemEl.className = "btn";
+choiceEl.appendChild(choiceItemEl);
+
+var choiceItemEl = document.createElement("li");
+choiceItemEl.textContent = questions[i].choiceD;
+choiceItemEl.className = "btn";
+choiceEl.appendChild(choiceItemEl);
   
-//     // Use the `setInterval()` method to call a function to be executed every 1000 milliseconds
-//     var timeInterval = setInterval(function() {
-//       if (timeLeft > 1) {
-//         timerEl.textContent = timeLeft + ' seconds remaining';
-//         timeLeft--;
-//       } else if (timeLeft === 1) {
-//         timerEl.textContent = timeLeft + ' second remaining';
-//         timeLeft--;
-//       } else {
-//         timerEl.textContent = '';
-//         clearInterval(timeInterval);
-//       }
-//     }, 1000);
-//   }
-
+  }
+ }
+// quizHandler();
+//  console.log(window.document);
+//  console.dir(window.document);
+}; // end show quiz
 
   // here is where our high score logic will go.
 var highScoreHandler = function() {
@@ -184,6 +165,6 @@ var highScoreHandler = function() {
 // if want people to replay -  random sort of questions array needs to be considered
  
 //click start button and timer starts
-startButton.addEventListener("click", quizHandler);
-reStartButton.addEventListener("click", quizHandler);
+startButton.addEventListener("click", showQuiz);
+reStartButton.addEventListener("click", showQuiz);
 highscoreEl.addEventListener("click", highScoreHandler);
