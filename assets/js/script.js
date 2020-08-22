@@ -3,93 +3,116 @@ var timerEl = document.querySelector('#timer');
 var score = 0;
 var contentEl = document.querySelector("#quiz-content");
 var startButton = document.querySelector("#start");
+var reStartButton = document.querySelector("#re-start");
 var highscoreEl = document.querySelector("#score");
+var timeLeft = 30;
 //questions and answers array: // put questions in objects -  this array will present in this order. 
 var questions = [
     {
         q: "Commonly used data types DO Not include: ",
         choices: {
-            choiceA: "1. strings",
-            choiceB: "2. booleans",
-            choiceC: "3. alerts",
-            choiceD: "4. numbers",
+            a: "1. strings",
+            b: "2. booleans",
+            c: "3. alerts",
+            d: "4. numbers",
         },
-        a: "choiceB"
+        answer: "b"
     },
     {
         q: "The condition in an if/else statement is enclosed with: ",
         choices: {
-            choiceA: "1. quotes",
-            choiceB: "2. curly brackets",
-            choiceC: "3. parenthesis",
-            choiceD: "4. square brackets",
+            a: "1. quotes",
+            b: "2. curly brackets",
+            c: "3. parenthesis",
+            d: "4. square brackets",
         },
-        a: "choiceC"
+        answer: "c"
     },
     {
         q: "Arrays in JavaScript can be used to store: ",
         choices: {
-            choiceA: "1. numbers and strings",
-            choiceB:"2. other arrays",
-            choiceC: "3. booleans",
-            choiceD: "4. all of the above",
+            a: "1. numbers and strings",
+            b:"2. other arrays",
+            c: "3. booleans",
+            d: "4. all of the above",
         },
-        a: "choiceD"
+        answer: "d"
     },
     {
         q: "String values must be enclosed within _______ when being assigned to variables: ",
         choices: {
-            choiceA: "1. commas",
-            choiceB: "2. curly brackets",
-            choiceC: "3. quotes",
-            choiceD: "4. parenthesis",
+            a: "1. commas",
+            b: "2. curly brackets",
+            c: "3. quotes",
+            d: "4. parenthesis",
         },
-        a: "choiceB"
+        answer: "b"
     },
     {
         q: "A very useful tool during development and debugging for printing content to the debugger is: ",
         choices: {
-            choiceA: "1. JavaScript",
-            choiceB: "2. terminal/bash",
-            choiceC: "3. for loops",
-            choiceD: "4. console log",
+            a: "1. JavaScript",
+            b: "2. terminal/bash",
+            c: "3. for loops",
+            d: "4. console log",
         },
-        a: "choiceD"
+        answer: "d"
     }
 ];  // end of questions array
 
 // here is our main quiz logic
 var quizHandler = function() {
     // Turn display none on for the welcome-page section and turn off for the content section
-
+    
     // run for loop for the questions
     for (var i = 0; i < questions.length; i++) {
-        // temporary window promt to test functionality
-        var answer = prompt(questions[i].q);
+        if (timeLeft > 0) {
 
+        // temporary window promt to test functionality
+        var askQuestion = prompt(questions[i].q);
+        var correctAnswer = (questions[i].answer);
+        console.log(askQuestion);
+        console.log(correctAnswer);
+        console.log(timeLeft);
         // create HTML elements to loop through the questions
-    }
+        
+            
+        //right or wrong answers
+            if(askQuestion === correctAnswer) {
+                window.alert("Correct!");
+            } else {
+                window.alert("Wrong Answer");
+                timeLeft = timeLeft - 10;
+                console.log(timeLeft);
+            } // end questions if statement
+        } // end time left if statement
+        else {
+            window.alert("Your time has run out! View your score");
+            return;
+}
+ }// end of our for loop
+
 };
 
 
 // Need to build out this function so it sets intervals that subtract time when a question is answered incorrectly
-function timer() {
-    var timeLeft = 60;
+// function timer() {
+//     var timeLeft = 60;
   
-    // Use the `setInterval()` method to call a function to be executed every 1000 milliseconds
-    var timeInterval = setInterval(function() {
-      if (timeLeft > 1) {
-        timerEl.textContent = timeLeft + ' seconds remaining';
-        timeLeft--;
-      } else if (timeLeft === 1) {
-        timerEl.textContent = timeLeft + ' second remaining';
-        timeLeft--;
-      } else {
-        timerEl.textContent = '';
-        clearInterval(timeInterval);
-      }
-    }, 1000);
-  }
+//     // Use the `setInterval()` method to call a function to be executed every 1000 milliseconds
+//     var timeInterval = setInterval(function() {
+//       if (timeLeft > 1) {
+//         timerEl.textContent = timeLeft + ' seconds remaining';
+//         timeLeft--;
+//       } else if (timeLeft === 1) {
+//         timerEl.textContent = timeLeft + ' second remaining';
+//         timeLeft--;
+//       } else {
+//         timerEl.textContent = '';
+//         clearInterval(timeInterval);
+//       }
+//     }, 1000);
+//   }
 
 
   // here is where our high score logic will go.
@@ -100,7 +123,7 @@ var highScoreHandler = function() {
 
 // window.confirm("Click OK to begin");
 
-// // loop through the questions
+
 
 // //timer loses time when player answers incorrectly
 
@@ -153,5 +176,5 @@ var highScoreHandler = function() {
  
 //click start button and timer starts
 startButton.addEventListener("click", quizHandler);
-
+reStartButton.addEventListener("click", quizHandler);
 highscoreEl.addEventListener("click", highScoreHandler);
