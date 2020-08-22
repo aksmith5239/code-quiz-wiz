@@ -1,5 +1,6 @@
 //global variables
 var timerEl = document.querySelector('#timer');
+var headerEl = document.querySelector("#header");
 var score = 0;
 var pageContentEl = document.querySelector("#page-content");
 var quizContentEl = document.querySelector("#quiz-content");
@@ -60,31 +61,38 @@ var questions = [
         answer: "d"
     }
 ];  // end of questions array
+//time creator function
+document.getElementById("timer").innerHTML = "<h3>Timer: " + timeLeft + " seconds left</h3>";
+
+    //parent node  =  timer
+    //insert h3 with timer and time left variable
 
 // here is our main quiz logic
 var quizHandler = function() {
+    
+    // document.getElementById("timer").innerHTML = "<h3>Timer: " + timeLeft + " seconds left</h3>";
     // Turn display none on for the welcome-page section and turn off for the content section
     
     // run for loop for the questions
     for (var i = 0; i < questions.length; i++) {
         if (timeLeft > 0) {
-
+            
         // temporary window promt to test functionality
         var askQuestion = prompt(questions[i].q);
         var correctAnswer = (questions[i].answer);
         console.log(askQuestion);
         console.log(correctAnswer);
-        console.log(timeLeft);
         // create HTML elements to loop through the questions
         
-            
         //right or wrong answers
+    
             if(askQuestion === correctAnswer) {
                 window.alert("Correct!");
             } else {
                 window.alert("Wrong Answer");
-                timeLeft = timeLeft - 10;
+                timeLeft = (timeLeft - 10);
                 console.log(timeLeft);
+                document.getElementById("timer").innerHTML = "<h3>Timer: " + timeLeft+ " seconds left</h3>";
             } // end questions if statement
         } // end time left if statement
         else {
