@@ -1,7 +1,8 @@
 //global variables
 var timerEl = document.querySelector('#timer');
 var score = 0;
-var contentEl = document.querySelector("#quiz-content");
+var pageContentEl = document.querySelector("#page-content");
+var quizContentEl = document.querySelector("#quiz-content");
 var startButton = document.querySelector("#start");
 var reStartButton = document.querySelector("#re-start");
 var highscoreEl = document.querySelector("#score");
