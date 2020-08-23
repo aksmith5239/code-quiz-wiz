@@ -66,44 +66,87 @@ var showQuiz = function() {
  document.getElementById("welcome-page").style.display = "none";
  // turn diplay to none for the welcome section
  document.getElementById("quiz-content").style.display = "block";
+
+questions.forEach(function(item, index, arr) {
+
+    
+
+        var questionDivEl = document.querySelector("#questions");
+        var questionEl = document.createElement("h1");
+        questionEl.textContent = item.q;
+        questionEl.className = "questions";
+        questionDivEl.appendChild(questionEl);
+        var choiceEl = document.querySelector("#questions");
+    
+        var choiceItemEl = document.createElement("li");
+        choiceItemEl.textContent = item.choiceA;
+        choiceItemEl.className = "btn";
+        choiceEl.appendChild(choiceItemEl);
+    
+        var choiceItemEl = document.createElement("li");
+        choiceItemEl.textContent = item.choiceB;
+        choiceItemEl.className = "btn";
+        choiceEl.appendChild(choiceItemEl);
+    
+        var choiceItemEl = document.createElement("li");
+        choiceItemEl.textContent = item.choiceC;
+        choiceItemEl.className = "btn";
+        choiceEl.appendChild(choiceItemEl);
+    
+        var choiceItemEl = document.createElement("li");
+        choiceItemEl.textContent = item.choiceD;
+        choiceItemEl.className = "btn";
+        choiceEl.appendChild(choiceItemEl);
+   
+    
+
+
+    console.log(item.q, item.choiceA, item.choiceB, item.choiceC, item.choiceD, index);
+});
+
  
- for (var i = 0; i < questions.length; i++) {
-    if (timeLeft > 0) {
+}
+//  for (var i = 0; i < questions.length; i++) {
+    
+    
+    
+    
+//     if (timeLeft > 0) {
       
-     // set the question html
-var questionDivEl = document.querySelector("#questions");
-var questionEl = document.createElement("h1");
-questionEl.textContent = questions[i].q;
-questionEl.className = "questions";
-questionDivEl.appendChild(questionEl);
-var choiceEl = document.querySelector("#questions");
+//      // set the question html
+// var questionDivEl = document.querySelector("#questions");
+// var questionEl = document.createElement("h1");
+// questionEl.textContent = questions[i].q;
+// questionEl.className = "questions";
+// questionDivEl.appendChild(questionEl);
+// var choiceEl = document.querySelector("#questions");
 
-var choiceItemEl = document.createElement("li");
-choiceItemEl.textContent = questions[i].choiceA;
-choiceItemEl.className = "btn";
-choiceEl.appendChild(choiceItemEl);
+// var choiceItemEl = document.createElement("li");
+// choiceItemEl.textContent = questions[i].choiceA;
+// choiceItemEl.className = "btn";
+// choiceEl.appendChild(choiceItemEl);
 
-var choiceItemEl = document.createElement("li");
-choiceItemEl.textContent = questions[i].choiceB;
-choiceItemEl.className = "btn";
-choiceEl.appendChild(choiceItemEl);
+// var choiceItemEl = document.createElement("li");
+// choiceItemEl.textContent = questions[i].choiceB;
+// choiceItemEl.className = "btn";
+// choiceEl.appendChild(choiceItemEl);
 
-var choiceItemEl = document.createElement("li");
-choiceItemEl.textContent = questions[i].choiceC;
-choiceItemEl.className = "btn";
-choiceEl.appendChild(choiceItemEl);
+// var choiceItemEl = document.createElement("li");
+// choiceItemEl.textContent = questions[i].choiceC;
+// choiceItemEl.className = "btn";
+// choiceEl.appendChild(choiceItemEl);
 
-var choiceItemEl = document.createElement("li");
-choiceItemEl.textContent = questions[i].choiceD;
-choiceItemEl.className = "btn";
-choiceEl.appendChild(choiceItemEl);
+// var choiceItemEl = document.createElement("li");
+// choiceItemEl.textContent = questions[i].choiceD;
+// choiceItemEl.className = "btn";
+// choiceEl.appendChild(choiceItemEl);
   
-  }
- }
-// quizHandler();
-//  console.log(window.document);
-//  console.dir(window.document);
-}; // end show quiz
+//    }
+//   }
+// // quizHandler();
+// //  console.log(window.document);
+// //  console.dir(window.document);
+// }; // end show quiz
 
   // here is where our high score logic will go.
 var highScoreHandler = function() {
