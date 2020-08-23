@@ -32,6 +32,7 @@ h1 {
     margin-bottom: 30px;
 }
 h2 {
+    border-top: 1px solid var(--lightgray);
     color: var(--lightgray);
     margin-bottom: 30px;
 }
@@ -45,6 +46,16 @@ a {
     color: var(--secondary-color);
 }
 .content-wrapper {
+    grid-template-rows: 1fr, 1fr;
+    grid-template-columns: repeat(4, 1fr);
+    display: grid;
+    justify-content: center;
+    text-align: center;
+    width: 95%;
+    margin-left: 20px;
+}
+
+.quiz-content-wrapper {
     grid-template-rows: 1fr, 1fr;
     grid-template-columns: repeat(4, 1fr);
     display: grid;
@@ -67,9 +78,18 @@ a {
     padding-right: 50px;
 }
 
-.btn  {
+button {
+    border:none;
+    background-color:transparent;
+    outline:none;
+    color: var(--light);
+    font-size: 1.2em;
+ }
+
+.btn {
     display:block;
-    width: 150px;
+    text-decoration: none;
+    width: 200px;
     padding: 10px;
     justify-content:center;
     text-align: center;
@@ -110,9 +130,9 @@ input:focus {
     grid-row: 2 ;
     grid-column: 2 / 4;
     color: var(--lightgray);
-    border-top: 1px solid var(--lightgray);
+    /* border-top: 1px solid var(--lightgray); */
     font-style: italic;
-    font-size: 15px;
+    font-size: 30px;
     /* width: 80%; */
     margin-top: 50px;
     

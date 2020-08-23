@@ -1,12 +1,16 @@
 //global variables
 var timerEl = document.querySelector('#timer');
-var headerEl = document.querySelector("#header");
+var headerEl = document.querySelector('#header');
 var score = 0;
 var pageContentEl = document.querySelector("#page-content");
 var quizContentEl = document.querySelector("#quiz-content");
 var startButton = document.querySelector("#start");
 var reStartButton = document.querySelector("#re-start");
 var highscoreEl = document.querySelector("#score");
+var choiceEl = document.querySelector("#questions");
+var answerEl = document.querySelector("#answers");
+
+// var choiceA = document.getElementById('#A');
 var timeLeft = 30;
 
 //questions and answers array: // put questions in objects -  this array will present in this order. 
@@ -17,7 +21,7 @@ var questions = [
         choiceB: "2. booleans",
         choiceC: "3. alerts",
         choiceD: "4. numbers",
-        answer: "b"
+        correct: "2."
     },
     {
         q: "The condition in an if/else statement is enclosed with: ",
@@ -25,7 +29,7 @@ var questions = [
         choiceB: "2. curly brackets",
         choiceC: "3. parenthesis",
         choiceD: "4. square brackets",
-        answer: "c"
+        correct: "3."
     },
     {
         q: "Arrays in JavaScript can be used to store: ",
@@ -33,7 +37,7 @@ var questions = [
         choiceB:"2. other arrays",
         choiceC: "3. booleans",
         choiceD: "4. all of the above",
-        answer: "d"
+        correct: "4."
     },
     {
         q: "String values must be enclosed within _______ when being assigned to variables: ",
@@ -41,7 +45,7 @@ var questions = [
         choiceB: "2. curly brackets",
         choiceC: "3. quotes",
         choiceD: "4. parenthesis",
-        answer: "b"
+        correct: "2."
     },
     {
         q: "A very useful tool during development and debugging for printing content to the debugger is: ",
@@ -49,7 +53,7 @@ var questions = [
         choiceB: "2. terminal/bash",
         choiceC: "3. for loops",
         choiceD: "4. console log",
-        answer: "d"
+        correct: "4."
     }
 ];  // end of questions array
 
@@ -65,44 +69,163 @@ var showQuiz = function() {
  //when quiz start button clicked: 
  document.getElementById("welcome-page").style.display = "none";
  // turn diplay to none for the welcome section
- document.getElementById("quiz-content").style.display = "block";
+ document.getElementById("quiz-content").style.display = "grid";
 
-questions.forEach(function(item, index, arr) {
+ let lastQuestionIndex = questions.length-1;
+ let runningQuestionIndex = 0;
 
-    
+ function showQuestion() {
+
+     let question = questions[runningQuestionIndex];
+    // var firstItem = questions[0];
+    // console.log(firstItem);
 
         var questionDivEl = document.querySelector("#questions");
         var questionEl = document.createElement("h1");
-        questionEl.textContent = item.q;
+        questionEl.textContent = question.q;
         questionEl.className = "questions";
         questionDivEl.appendChild(questionEl);
-        var choiceEl = document.querySelector("#questions");
-    
-        var choiceItemEl = document.createElement("li");
-        choiceItemEl.textContent = item.choiceA;
-        choiceItemEl.className = "btn";
-        choiceEl.appendChild(choiceItemEl);
-    
-        var choiceItemEl = document.createElement("li");
-        choiceItemEl.textContent = item.choiceB;
-        choiceItemEl.className = "btn";
-        choiceEl.appendChild(choiceItemEl);
-    
-        var choiceItemEl = document.createElement("li");
-        choiceItemEl.textContent = item.choiceC;
-        choiceItemEl.className = "btn";
-        choiceEl.appendChild(choiceItemEl);
-    
-        var choiceItemEl = document.createElement("li");
-        choiceItemEl.textContent = item.choiceD;
-        choiceItemEl.className = "btn";
-        choiceEl.appendChild(choiceItemEl);
+       
+
+        var choiceButton = document.createElement("li");
+        choiceButton.innerHTML = `<input type='radio' id='A'  name='answer' value = ${question.choiceA}> ` + question.choiceA;
+        choiceButton.className = "btn";
+        choiceEl.appendChild(choiceButton);
    
+        var choiceButton = document.createElement("li");
+        choiceButton.innerHTML = `<input type='radio' id='A' name='answer' value = ${question.choiceB}> ` + question.choiceB;
+        choiceButton.className = "btn";
+        choiceEl.appendChild(choiceButton);
+
+        var choiceButton = document.createElement("li");
+        choiceButton.innerHTML = `<input type='radio' id='A' name='answer' value = ${question.choiceC}> ` + question.choiceC;
+        choiceButton.className = "btn";
+        choiceEl.appendChild(choiceButton);
+
+        var choiceButton = document.createElement("li");
+        choiceButton.innerHTML = `<input type='radio' id='A'  name='answer' value = ${question.choiceD}> ` + question.choiceD;
+        choiceButton.className = "btn";
+        choiceEl.appendChild(choiceButton);
+
+        var choiceButton = document.createElement("li");
+        choiceButton.innerHTML = `<input type='submit' id='check-answer'> `;
+        choiceButton.className = "btn";
+        choiceEl.appendChild(choiceButton);
+        
+        
+
+        const answer = document.querySelector("#check-answer");
+        answer.onclick = function () {
+            const rbs = document.querySelectorAll('input[name="answer"]');
+            let selectedValue;
+            for (const rb of rbs) {
+                if(rb.checked) {
+                    selectedValue = rb.value;
+                    break;
+                }
+            }
+            console.log(selectedValue);
+            if(questions[runningQuestionIndex].correct == selectedValue) {
+                
+                var answerDivEl = document.querySelector("#answers");
+                var answerEl = document.createElement("h1");
+                answerEl.textContent = "The Answer is Correct!";
+                answerEl.className = "answers";
+                answerDivEl.appendChild(answerEl);
+                
+            } else {
+                var answerDivEl = document.querySelector("#answers");
+                var answerEl = document.createElement("h2");
+                answerEl.textContent = "The Answer is Wrong!";
+                answerEl.className = "answers";
+                answerDivEl.appendChild(answerEl);
+                timeLeft = timeLeft - 10;
+                console.log(timeLeft);
+                document.getElementById("timer").innerHTML = "<h3>Timer: " + timeLeft + " seconds left</h3>";
+                
+            }
+
+            if(runningQuestionIndex < lastQuestionIndex) {
+                count = 0;
+                runningQuestionIndex++;
+                showQuestion();
+            } else {
+                console.log("Game Over");
+            }
+        }
+
+
+        
+}
+showQuestion();
+
+        
+// choiceA = addEventListener("click", checkAnswer);
+// console.log(choiceA);
+
+
+// runningQuestionIndex ++
+// showQuestion();
+
+
+
+//  for (var i = 0; i < questions.length; i++) {
     
+    
+//         var questionDivEl = document.querySelector("#questions");
+//         var questionEl = document.createElement("h1");
+//         questionEl.textContent = questions[i].q;
+//         questionEl.className = "questions";
+//         questionDivEl.appendChild(questionEl);
+//         var choiceEl = document.querySelector("#questions");
+    
+//         // var choiceItemEl = document.createElement("li");
+//         // choiceItemEl.textContent = item.choiceA;
+//         // choiceItemEl.className = "btn";
+//         // choiceEl.appendChild(choiceItemEl);
+    
+//         // var choiceItemEl = document.createElement("li");
+//         // choiceItemEl.textContent = item.choiceB;
+//         // choiceItemEl.className = "btn";
+//         // choiceEl.appendChild(choiceItemEl);
+    
+//         // var choiceItemEl = document.createElement("li");
+//         // choiceItemEl.textContent = item.choiceC;
+//         // choiceItemEl.className = "btn";
+//         // choiceEl.appendChild(choiceItemEl);
+    
+//         // var choiceItemEl = document.createElement("li");
+//         // choiceItemEl.textContent = item.choiceD;
+//         // choiceItemEl.className = "btn";
+//         // choiceEl.appendChild(choiceItemEl);
 
+//         var getChoice = function() {
+           
+//         }
+//         var choiceButton = document.createElement("li");
+//         choiceButton.innerHTML = "<button onclick='" +getChoice(this.id) +"' id='A'>"+ questions[i].choiceA + "</button>";
+//         choiceButton.className = "btn";
+//         choiceEl.appendChild(choiceButton);
+   
+//         var choiceButton = document.createElement("li");
+//         choiceButton.innerHTML = "<button onclick='" +getChoice(this.id) +"' id='B' >"+ questions[i].choiceB + "</button>";
+//         choiceButton.className = "btn";
+//         choiceEl.appendChild(choiceButton);
 
-    console.log(item.q, item.choiceA, item.choiceB, item.choiceC, item.choiceD, index);
-});
+//         var choiceButton = document.createElement("li");
+//         choiceButton.innerHTML = "<button id='C' onclick='" +getChoice(this.id) +"' id='C' >"+ questions[i].choiceC + "</button>";
+//         choiceButton.className = "btn";
+//         choiceEl.appendChild(choiceButton);
+
+//         var choiceButton = document.createElement("li");
+//         choiceButton.innerHTML = "<button id='D'  onclick='" +getChoice(this.id) +"' id='D'>"+ questions[i].choiceD + "</button>";
+//         choiceButton.className = "btn";
+//         choiceEl.appendChild(choiceButton);
+
+//         // get id of the button clicked
+       
+       
+// }
 
  
 }
@@ -154,60 +277,10 @@ var highScoreHandler = function() {
 };
 
 
-// window.confirm("Click OK to begin");
 
 
-
-// //timer loses time when player answers incorrectly
-
-// // next question comes up when answer correctly
-// // question screen with question and 4 answer buttons
-// window.confirm("Question 1");
-// var question1 = window.confirm("This is your first question");
-// if (question1) {
-//     window.alert("Correct!");
-// } else {
-//     window.alert("Wrong Answer!");
-// }
-
-// // answer correct or wrong display
-// var question2 = window.confirm("This is your second question");
-// if (question2) {
-//     window.alert("Correct!");
-// } else {
-//     window.alert("Wrong Answer!");
-// }
-
-// //okay for right
-// // cancel for wrong
-
-// //presented with questions
-// // array of questions
-// // first question answered - presented with another question
-
-// //when answered incorrectly: 
-// //time subtracted from clock
-// // buzz sound chimes
-// // wrong answer displayed in answer section
-
-// //when answered correctly 
-// // correct! displayed in answer section
-// // ding chime sounds
-
-// // when all questions answered - game over
-// // when time runs out --game over
-// window.alert("Game Over! View Highscore");
-// // view highscore 
-// window.alert("You have the highscore");
-// window.prompt("Add your initials here");
-// // highscore page with initials of high score player
-// // add initials to high score - store to localStorage
-// window.alert("Thank you for playing. Play again soon!");
-
-
-// if want people to replay -  random sort of questions array needs to be considered
- 
-//click start button and timer starts
 startButton.addEventListener("click", showQuiz);
 reStartButton.addEventListener("click", showQuiz);
 highscoreEl.addEventListener("click", highScoreHandler);
+// choicesEl.addEventListener("click", showChoice);
+
